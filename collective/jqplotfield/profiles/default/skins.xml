@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+
+ <object name="jqplot"
+    meta_type="Filesystem Directory View"
+    directory="collective.jqplotfield:skins/jqplot"/>
+    
+<object name="plot_macros"
+   meta_type="Filesystem Directory View"
+   directory="collective.jqplotfield:skins/plot_macros"/>
+   
+ <skin-path name="*">
+  <layer name="maire_templates"
+     insert-after="custom"/>
+     <layer name="plot_macros"
+          insert-after="custom"/>
+ </skin-path>
+
+</object>

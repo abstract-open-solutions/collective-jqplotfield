@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+  <head><title></title></head>
+  <body>
+
+    <!-- Lines Widgets -->
+
+    <metal:view_macro define-macro="view" tal:define="scripts python:widget.getScripts(field, context);
+                                                     element_id string:${fieldName}_id;"
+                                           tal:condition="scripts">
+      <!-- BEGIN: load jqplot -->
+      <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
+      <link type="text/css" href="jqplot/examples/jquery-ui/css/ui-lightness/jquery-ui-1.8.1.custom.css" rel="Stylesheet" />	
+      <script type="text/javascript" src="jqplot/examples/jquery-ui/js/jquery-ui-1.8.1.custom.min.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.barRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pieRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.logAxisRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.highlighter.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pointLabels.js"></script>
+      <!-- END: load jqplot -->
+      
+      <tal:block replace="structure scripts"/>
+      
+      <div id="chart1" tal:attributes="id element_id" style="margin-top:20px; margin-left:20px; width:300px; height:300px;"></div>
+      
+    </metal:view_macro>
+
+    <div metal:define-macro="edit">
+      <div metal:use-macro="field_macro | context/widgets/field/macros/edit">
+          <div metal:fill-slot="widget_body" tal:define="values python:widget.getValues(field, context); 
+                                                         value_x values/x; value_y values/y;
+                                                         label_x values/label_x; label_y values/label_y;
+                                                         value_type values/type">
+              <label for="" tal:attributes="for string:${fieldName}-type">Type</label>
+              <input type="text"
+                      name=""
+                      value=""
+                      tal:attributes="name string:$fieldName-type;
+                                      id string:$fieldName-type;
+                                      value value_type" />
+              <br/>
+              <label for="" tal:attributes="for string:$fieldName-label-x">Label for x axis</label>
+              <input type="text"
+                      name=""
+                      value=""
+                      tal:attributes="name string:$fieldName-label-x;
+                                      id string:$fieldName-label-x;
+                                      value label_x" />
+              <br/>
+              <label for="" tal:attributes="for string:$fieldName-label-y">Label for y axis</label>
+              <input type="text"
+                      name=""
+                      value=""
+                      tal:attributes="name string:$fieldName-label-y;
+                                      id string:$fieldName-label-y;
+                                      value label_y" />
+              <br/>
+              <label for="" tal:attributes="for string:$fieldName-x">x</label>
+              <textarea tal:attributes="name string:$fieldName-x:lines;
+                                        id string:$fieldName-x;
+                                        cols widget/cols;
+                                        rows widget/rows;"
+                        tal:content="python:value_x and '\n'.join(value_x) or ''"></textarea>
+              <label for="" tal:attributes="for string:$fieldName-y">y</label>
+              <textarea tal:attributes="name string:$fieldName-y:lines;
+                                          id string:$fieldName-y;
+                                          cols widget/cols;
+                                          rows widget/rows;"
+                        tal:content="python:value_y and '\n'.join(value_y) or ''"></textarea>
+          </div>
+      </div>
+    </div>
+
+    <div metal:define-macro="search">
+      <div metal:use-macro="context/widgets/lines/macros/edit">
+      </div>
+    </div>
+
+    <div metal:define-macro="hidden" tal:define="values python:widget.getValues(field, context); value_x python:values[0]; value_y python:values[1]">
+      <input type="hidden"
+             name=""
+             value=""
+             tal:attributes="name string:${fieldName}-x:lines;
+                             value python:'\n'.join(value_x);" />
+     <input type="hidden"
+              name=""
+              value=""
+              tal:attributes="name string:${fieldName}-y:lines;
+                              value python:'\n'.join(value_y);" />
+    </div>
+
+
+  </body>
+
+</html>
