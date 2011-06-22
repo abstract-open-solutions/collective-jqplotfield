@@ -37,14 +37,16 @@
           <div metal:fill-slot="widget_body" tal:define="values python:widget.getValues(field, context); 
                                                          value_x values/x; value_y values/y;
                                                          label_x values/label_x; label_y values/label_y;
-                                                         value_type values/type">
+                                                         plot_type widget/plot_type;
+                                                         value_type values/type;">
               <label for="" tal:attributes="for string:${fieldName}-type">Type</label>
-              <input type="text"
-                      name=""
-                      value=""
-                      tal:attributes="name string:$fieldName-type;
-                                      id string:$fieldName-type;
-                                      value value_type" />
+              <select name="" tal:attributes="name string:$fieldName-type;
+                                              id string:$fieldName-type;">
+                    <option></option>
+                    <tal:block tal:repeat="plot plot_type">
+                        <option tal:attributes="value plot; selected python:plot == value_type and True or nothing" tal:content="plot"/>
+                    </tal:block>
+              </select>
               <br/>
               <label for="" tal:attributes="for string:$fieldName-label-x">Label for x axis</label>
               <input type="text"

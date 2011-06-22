@@ -17,7 +17,6 @@
       />
   <!-- -*- extra stuff goes here -*- -->
   
-  <cmf:registerDirectory name="jqplot"/>
   <cmf:registerDirectory name="plot_macros"/>
   
 </configure>

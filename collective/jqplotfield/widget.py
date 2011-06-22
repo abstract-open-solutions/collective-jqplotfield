@@ -8,6 +8,7 @@ class PlotWidget(TypesWidget):
         'macro' : "plot_macros",
         'rows'  : 5,
         'cols'  : 5,
+        'plot_type': ['bar', 'pie']
         })
 
     security = ClassSecurityInfo()
@@ -36,7 +37,8 @@ class PlotWidget(TypesWidget):
                 rendererOptions:{
                     startAngle: 90,
                     sliceMargin: 4,
-                    highlightMouseDown: true
+                    highlightMouseDown: true,
+                    showDataLabels: true
                 }
             },
             legend: {
