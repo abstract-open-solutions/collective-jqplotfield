@@ -24,11 +24,12 @@
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.highlighter.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pointLabels.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.horizontalLegendRenderer.js"></script>
       <!-- END: load jqplot -->
       
       <tal:block replace="structure scripts"/>
       
-      <div id="chart1" tal:attributes="id element_id" style="margin-top:20px; margin-left:20px; width:300px; height:300px;"></div>
+      <div id="chart1" tal:attributes="id element_id" style=""></div>
       
     </metal:view_macro>
 

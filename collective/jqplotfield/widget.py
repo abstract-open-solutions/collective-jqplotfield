@@ -42,10 +42,12 @@ class PlotWidget(TypesWidget):
                 }
             },
             legend: {
-                show: true,
-                location: 'e',
-                placement: 'outside'
-            }      
+                    show:true,
+                    location: 'nw',
+                    renderer: $.jqplot.horizontalLegendRenderer,
+                    yoffset: 5,
+                    xoffset: 5
+            }
         });
     });
 </script>""" % {
