@@ -108,6 +108,7 @@ class PlotWidget(TypesWidget):
                     labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
                     tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                     tickOptions:{
+                        labelPosition: 'middle',
                         angle: -30
                     },
                     ticks: %(fieldname)s_ticks,
