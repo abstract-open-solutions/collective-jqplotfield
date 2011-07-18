@@ -61,7 +61,10 @@ class PlotWidget(TypesWidget):
             legend: {
                 show: true,
                 drawBorder: false,
-                location: 'w'
+                rendererOptions: {
+                    numberRows: 1
+                },
+                location: 'n'
             },
             seriesColors: %(colors)s
         });
@@ -87,9 +90,8 @@ class PlotWidget(TypesWidget):
             captureRightClick: true,
             grid: {
                 drawBorder: true, 
-                drawGridlines: false,
+                drawGridlines: true,
                 background: '#E5E6E7',
-                borderColor: '#222',
                 shadow:false
             },
             axesDefaults: {
@@ -108,8 +110,7 @@ class PlotWidget(TypesWidget):
                         showGridline: true
                     },
                     ticks: %(fieldname)s_ticks,
-                    label: %(fieldname)s_label_x,
-                    borderColor: '#999'
+                    label: %(fieldname)s_label_x
                 },
                 yaxis:{
                     borderWidth:1,
