@@ -62,7 +62,7 @@ class PlotWidget(TypesWidget):
                 show: true,
                 drawBorder: false,
                 rendererOptions: {
-                    numberRows: 1
+                    numberRows: 2
                 },
                 location: 'n'
             },
@@ -108,8 +108,7 @@ class PlotWidget(TypesWidget):
                     labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
                     tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                     tickOptions:{
-                        angle: -30,
-                        showGridline: true
+                        angle: -30
                     },
                     ticks: %(fieldname)s_ticks,
                     label: %(fieldname)s_label_x
