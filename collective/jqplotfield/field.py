@@ -46,12 +46,15 @@ class PlotField(ObjectField):
             value = {}
             
         if isinstance(value, dict):
+            title = value.get('title', '')
             value_type = value.get('type','')
             values_x = value.get('x',[])
             values_y = value.get('y',[])
             label_x = value.get('label_x','')
             label_y = value.get('label_y','')
             
+            if title:
+                title = decode(title.strip(), instance, **kwargs)
             if value_type:
                 value_type = decode(value_type.strip(), instance, **kwargs)
             if label_x:
@@ -67,7 +70,7 @@ class PlotField(ObjectField):
                 values_y = [decode(v.strip(), instance, **kwargs)
                             for v in values_y if v and v.strip()]
             
-            value = {'type': value_type, 'x': values_x, 'y': values_y, 'label_x': label_x, 'label_y': label_y}
+            value = {'title': title, 'type': value_type, 'x': values_x, 'y': values_y, 'label_x': label_x, 'label_y': label_y}
 
         ObjectField.set(self, instance, value, **kwargs)
 
@@ -75,6 +78,7 @@ class PlotField(ObjectField):
     def get(self, instance, **kwargs):
         values = ObjectField.get(self, instance, **kwargs) or {}
         
+        title = ''
         value_type = ''
         data_x = []
         data_y = []
@@ -82,6 +86,7 @@ class PlotField(ObjectField):
         label_y = ''
         
         if values:
+            title = encode(values.get('title', ''), instance, **kwargs)
             value_type = encode(values.get('type', ''), instance, **kwargs)
             label_x = encode(values.get('label_x', ''), instance, **kwargs)
             label_y = encode(values.get('label_y', ''), instance, **kwargs)
@@ -90,7 +95,12 @@ class PlotField(ObjectField):
             data_x = [encode(v, instance, **kwargs) for v in values_x]
             data_y = [encode(v, instance, **kwargs) for v in values_y]
         
-        return {'type': value_type, 'x': data_x, 'y': data_y, 'label_x': label_x, 'label_y': label_y,}
+        return {'title': title, 
+                'type': value_type,
+                'x': data_x,
+                'y': data_y, 
+                'label_x': label_x, 
+                'label_y': label_y,}
 
     security.declarePrivate('getRaw')
     def getRaw(self, instance, **kwargs):

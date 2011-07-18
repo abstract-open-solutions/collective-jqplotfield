@@ -9,7 +9,7 @@
     <!-- Lines Widgets -->
 
     <metal:view_macro define-macro="view" tal:define="scripts python:widget.getScripts(field, context);
-                                                     element_id string:${fieldName}_id;"
+                                                      element_id string:${fieldName}_id;"
                                            tal:condition="scripts">
       <!-- BEGIN: load jqplot -->
       <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
@@ -18,28 +18,41 @@
       <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.barRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pieRenderer.js"></script>
+      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.donutRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.logAxisRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.highlighter.js"></script>
       <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pointLabels.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.horizontalLegendRenderer.js"></script>
       <!-- END: load jqplot -->
       
       <tal:block replace="structure scripts"/>
       
-      <div id="chart1" tal:attributes="id element_id" style=""></div>
       
+          <div class="graph-container">
+              <h2 tal:define="title   python:widget.getTitle(field, context);" tal:content="title"/>
+              <div id="chart1" tal:attributes="id element_id" style="height:155px;"></div>
+          </div>
+          <div class="graph-footer"></div>
     </metal:view_macro>
 
     <div metal:define-macro="edit">
       <div metal:use-macro="field_macro | context/widgets/field/macros/edit">
-          <div metal:fill-slot="widget_body" tal:define="values python:widget.getValues(field, context); 
+          <div metal:fill-slot="widget_body" tal:define="values python:widget.getValues(field, context);
+                                                         plot_title values/title;
                                                          value_x values/x; value_y values/y;
                                                          label_x values/label_x; label_y values/label_y;
                                                          plot_type widget/plot_type;
                                                          value_type values/type;">
+              <label for="" tal:attributes="for string:$fieldName-plot-title">Plot title</label>
+              <input type="text"
+                       name=""
+                       value=""
+                       tal:attributes="name string:$fieldName-plot-title;
+                                       id string:$fieldName-plot-title;
+                                       value plot_title" />
+              <br/>
               <label for="" tal:attributes="for string:${fieldName}-type">Type</label>
               <select name="" tal:attributes="name string:$fieldName-type;
                                               id string:$fieldName-type;">
