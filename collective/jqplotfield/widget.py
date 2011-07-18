@@ -106,6 +106,7 @@ class PlotWidget(TypesWidget):
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
                     labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                     tickOptions:{
                         angle: -30,
                         showGridline: true
