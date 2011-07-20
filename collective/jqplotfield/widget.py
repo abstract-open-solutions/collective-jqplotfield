@@ -105,20 +105,22 @@ class PlotWidget(TypesWidget):
             axes: {
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
+                    ticks: %(fieldname)s_ticks,
+                    label: %(fieldname)s_label_x,
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
                     tickRenderer: $.jqplot.CanvasAxisTickRenderer,
                     tickOptions: {
                       enableFontSupport: true,
-                        angle: -30
-                    },
-                    ticks: %(fieldname)s_ticks,
-                    label: %(fieldname)s_label_x
+                      angle: -30,
+                      mark: 'cross'
+                    }
                 },
                 yaxis:{
                     borderWidth:1,
                     autoscale: true,
                     numberTicks:4,
                     label:%(fieldname)s_label_y,
-                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer
                 }
             },
             legend: {

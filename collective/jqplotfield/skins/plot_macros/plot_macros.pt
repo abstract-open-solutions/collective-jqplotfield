@@ -7,27 +7,10 @@
   <body>
 
     <!-- Lines Widgets -->
-
+    
     <metal:view_macro define-macro="view" tal:define="scripts python:widget.getScripts(field, context);
                                                       element_id string:${fieldName}_id;"
                                            tal:condition="scripts">
-      <!-- BEGIN: load jqplot -->
-      <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
-      <link type="text/css" href="jqplot/examples/jquery-ui/css/ui-lightness/jquery-ui-1.8.1.custom.css" rel="Stylesheet" />	
-      <script type="text/javascript" src="jqplot/examples/jquery-ui/js/jquery-ui-1.8.1.custom.min.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.barRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pieRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.donutRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.logAxisRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.CanvasAxisTickRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.highlighter.js"></script>
-      <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pointLabels.js"></script>
-      <!-- END: load jqplot -->
-      
       <tal:block replace="structure scripts"/>
       
       
@@ -36,6 +19,25 @@
               <div id="chart1" tal:attributes="id element_id" style="height:255px;"></div>
           </div>
           <div class="graph-footer"></div>
+          
+          <!-- BEGIN: load jqplot -->
+          <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
+          <link type="text/css" href="jqplot/examples/jquery-ui/css/ui-lightness/jquery-ui-1.8.1.custom.css" rel="Stylesheet" />	
+          <script type="text/javascript" src="jqplot/examples/jquery-ui/js/jquery-ui-1.8.1.custom.min.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.logAxisRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisLabelRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.highlighter.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pointLabels.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.barRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.pieRenderer.js"></script>
+          <script language="javascript" type="text/javascript" src="jqplot/plugins/jqplot.donutRenderer.js"></script>
+          <!-- END: load jqplot -->
+          
     </metal:view_macro>
 
     <div metal:define-macro="edit">
