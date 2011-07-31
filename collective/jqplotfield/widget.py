@@ -66,6 +66,9 @@ class PlotWidget(TypesWidget):
                 },
                 location: 'n'
             },
+            highlighter: {
+                show: false
+            },
             seriesColors: %(colors)s
         });
     });
@@ -83,8 +86,8 @@ class PlotWidget(TypesWidget):
 
         var %(fieldname)s_value_y = %(value_y)s;
         var %(fieldname)s_ticks = %(value_x)s;
-        var %(fieldname)s_label_x = '%(label_x)s';
-        var %(fieldname)s_label_y = '%(label_y)s';
+        var %(fieldname)s_label_x = "%(label_x)s";
+        var %(fieldname)s_label_y = "%(label_y)s";
         
         %(fieldname)s_bar = $.jqplot('%(fieldname)s_id', [%(fieldname)s_value_y], {
             captureRightClick: true,
@@ -124,7 +127,7 @@ class PlotWidget(TypesWidget):
                 }
             },
             legend: {
-                show: false,
+                show: false
             },
             seriesColors: %(colors)s,
             highlighter: { show: false }
