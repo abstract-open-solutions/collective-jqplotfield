@@ -25,7 +25,7 @@ class PlotWidget(TypesWidget):
         
         seriesColor = '['
         seriesColor += '"#094467","#1D6F9F","#488ab1","#2e5c77","#51788e","#304a59","#50a0cf",'
-        seriesColor += '"#72accf"',"#7ca4bb","#A5C8DD"
+        seriesColor += '"#72accf","#7ca4bb","#A5C8DD"'
         seriesColor += ']'
         
         if not (values['x'] and values['y']):
