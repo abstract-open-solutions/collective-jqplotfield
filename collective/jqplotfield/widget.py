@@ -61,10 +61,7 @@ class PlotWidget(TypesWidget):
             legend: {
                 show: true,
                 drawBorder: false,
-                rendererOptions: {
-                    numberRows: 2
-                },
-                location: 'n'
+                location: 'w'
             },
             highlighter: {
                 show: false
