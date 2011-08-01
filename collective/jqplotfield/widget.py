@@ -24,9 +24,8 @@ class PlotWidget(TypesWidget):
         values = self.getValueForPlot(field, instance)
         
         seriesColor = '['
-        seriesColor += '"#094467","#1D6F9F",'
-        seriesColor += '"#2e5c77","#285B7A","#304a59","#50a0cf","#72accf","#7ca4bb","#A5C8DD",'
-        seriesColor += '"#697F8C"'
+        seriesColor += '"#094467","#1D6F9F","#488ab1","#2e5c77","#51788e","#304a59","#50a0cf",'
+        seriesColor += '"#72accf"',"#7ca4bb","#A5C8DD"
         seriesColor += ']'
         
         if not (values['x'] and values['y']):
@@ -61,7 +60,7 @@ class PlotWidget(TypesWidget):
             legend: {
                 show: true,
                 drawBorder: false,
-                location: 'w'
+                location: 'nw'
             },
             highlighter: {
                 show: false
