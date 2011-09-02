@@ -17,6 +17,11 @@ class PlotWidget(TypesWidget):
         fieldName = field.getName()
         values = self.getValues(field, instance)
         return values['title']
+    
+    def getDescription(self, field, instance):
+        fieldName = field.getName()
+        values = self.getValues(field, instance)
+        return values['description']
         
     def getScripts(self, field, instance):
         """ return scripts """
@@ -162,6 +167,7 @@ class PlotWidget(TypesWidget):
         value = TypesWidget.process_form(self, instance, field, form, empty_marker, emptyReturnsMarker)
         
         name_field_title = field.getName() + '-plot-title'
+        name_field_description = field.getName() + '-plot-description'
         name_field_type = field.getName() + '-type'
         name_field_x = field.getName() + '-x'
         name_field_y = field.getName() + '-y'
@@ -169,13 +175,14 @@ class PlotWidget(TypesWidget):
         name_field_label_y = field.getName() + '-label-y'
         
         title = form.get(name_field_title, empty_marker)
+        description = form.get(name_field_description, '')
         value_type = form.get(name_field_type, empty_marker)
         value_x = form.get(name_field_x, empty_marker)
         value_y = form.get(name_field_y, empty_marker)
         label_x = form.get(name_field_label_x, empty_marker)
         label_y = form.get(name_field_label_y, empty_marker)
         
-        return {'title': title, 'type': value_type, 'x': value_x, 'y': value_y, 'label_x': label_x, 'label_y': label_y}, {}
+        return {'title': title, 'description': description, 'type': value_type, 'x': value_x, 'y': value_y, 'label_x': label_x, 'label_y': label_y}, {}
         
 __all__ = ('PlotWidget')
 

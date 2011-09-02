@@ -18,7 +18,7 @@
               <h2 tal:define="title   python:widget.getTitle(field, context);" tal:content="title"/>
               <div id="chart1" tal:attributes="id element_id" style="height:255px;"></div>
           </div>
-          <div class="graph-footer"></div>
+          <div class="graph-footer"><p class="plot-description" tal:define="description   python:widget.getDescription(field, context);" tal:content="description"/></div>
           
           <!-- BEGIN: load jqplot -->
           <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
@@ -47,6 +47,7 @@
       <div metal:use-macro="field_macro | context/widgets/field/macros/edit">
           <div metal:fill-slot="widget_body" tal:define="values python:widget.getValues(field, context);
                                                          plot_title values/title;
+                                                         plot_description values/description|nothing;
                                                          value_x values/x; value_y values/y;
                                                          label_x values/label_x; label_y values/label_y;
                                                          plot_type widget/plot_type;
@@ -58,6 +59,13 @@
                        tal:attributes="name string:$fieldName-plot-title;
                                        id string:$fieldName-plot-title;
                                        value plot_title" />
+              <br/>
+              <label for="" tal:attributes="for string:${fieldName}-plot-description">Description</label>
+              <textarea tal:attributes="name string:$fieldName-plot-description;
+                                        id string:$fieldName-plot-description;
+                                        cols widget/cols;
+                                        rows widget/rows;"
+                          tal:content="plot_description"></textarea>
               <br/>
               <label for="" tal:attributes="for string:${fieldName}-type">Type</label>
               <select name="" tal:attributes="name string:$fieldName-type;

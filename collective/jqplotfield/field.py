@@ -47,6 +47,7 @@ class PlotField(ObjectField):
             
         if isinstance(value, dict):
             title = value.get('title', '')
+            description = value.get('description', '')
             value_type = value.get('type','')
             values_x = value.get('x',[])
             values_y = value.get('y',[])
@@ -55,6 +56,8 @@ class PlotField(ObjectField):
             
             if title:
                 title = decode(title.strip(), instance, **kwargs)
+            if description:
+                description = decode(description.strip(), instance, **kwargs)
             if value_type:
                 value_type = decode(value_type.strip(), instance, **kwargs)
             if label_x:
@@ -70,7 +73,7 @@ class PlotField(ObjectField):
                 values_y = [decode(v.strip(), instance, **kwargs)
                             for v in values_y if v and v.strip()]
             
-            value = {'title': title, 'type': value_type, 'x': values_x, 'y': values_y, 'label_x': label_x, 'label_y': label_y}
+            value = {'title': title, 'description': description, 'type': value_type, 'x': values_x, 'y': values_y, 'label_x': label_x, 'label_y': label_y}
 
         ObjectField.set(self, instance, value, **kwargs)
 
@@ -79,6 +82,7 @@ class PlotField(ObjectField):
         values = ObjectField.get(self, instance, **kwargs) or {}
         
         title = ''
+        description = ''
         value_type = ''
         data_x = []
         data_y = []
@@ -87,6 +91,7 @@ class PlotField(ObjectField):
         
         if values:
             title = encode(values.get('title', ''), instance, **kwargs)
+            description = encode(values.get('description', ''), instance, **kwargs)
             value_type = encode(values.get('type', ''), instance, **kwargs)
             label_x = encode(values.get('label_x', ''), instance, **kwargs)
             label_y = encode(values.get('label_y', ''), instance, **kwargs)
@@ -95,7 +100,8 @@ class PlotField(ObjectField):
             data_x = [encode(v, instance, **kwargs) for v in values_x]
             data_y = [encode(v, instance, **kwargs) for v in values_y]
         
-        return {'title': title, 
+        return {'title': title,
+                'description': description,
                 'type': value_type,
                 'x': data_x,
                 'y': data_y, 
