@@ -17,6 +17,6 @@
       />
   <!-- -*- extra stuff goes here -*- -->
   
-  <cmf:registerDirectory name="plot_macros"/>
+  <cmf:registerDirectory name="plot_macros" recursive="True"/>
   
 </configure>
