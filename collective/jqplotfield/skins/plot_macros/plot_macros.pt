@@ -24,7 +24,7 @@
           <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
           <link type="text/css" href="jqplot/examples/jquery-ui/css/ui-lightness/jquery-ui-1.8.1.custom.css" rel="Stylesheet" />	
           <!--[if IE]>
-            <script language="javascript" type="text/javascript" src="jqplot/excanvas.min.js"></script>
+            <script language="javascript" type="text/javascript" src="jqplot/excanvas.js"></script>
           <![endif]-->
           <script type="text/javascript" src="jqplot/examples/jquery-ui/js/jquery-ui-1.8.1.custom.min.js"></script>
           <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.js"></script>
